@@ -1,8 +1,9 @@
 
 var noble = require('noble');
+var Devices = require('./devices');
 
-var serviceUuid = '181D';
-var measurementCharacteristicUuid = '2a9d';
+var serviceUuid = Devices.serviceUuid;
+var measurementCharacteristicUuid = Devices.measurementCharacteristicUuid;
 var measurementCharacteristic = null;
 
 noble.on('stateChange', function(state) {
@@ -17,7 +18,7 @@ noble.on('stateChange', function(state) {
 })
 
 noble.on('discover', function(peripheral) {
-  if (peripheral.advertisement.localName == 'A&D_UC-352BLE_5F01AA') {
+  if (peripheral.advertisement.localName == Devices.localName) {
       stopScanning();
 
       console.log('found our target peripheral');
